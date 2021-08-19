@@ -1,60 +1,45 @@
 import React from 'react';
 import SelectComponent from '../select/select-component';
+import InputComponent from '../input/input-component';
+
+const _INPUTS = [
+    {
+        'id': '1',
+        'type': 'text',
+        'label': 'Nome',
+        'required': true
+    },
+    {
+        'id': '2',
+        'type': 'text',
+        'label': 'Sobrenome',
+        'required': false
+    },
+    {
+        'id': '3',
+        'type': 'email',
+        'label': 'Email',
+        'required': true
+    },
+    {
+        'id': '4',
+        'type': 'number',
+        'label': 'Duração',
+        'required': true
+    },
+    {
+        'id': '5',
+        'type': 'text',
+        'label': 'Modelo do celular',
+        'required': true
+    }
+];
 
 const _SELECT_OPTIONS = {
-    'imovel': [
-        {
-            'type': 'text',
-            'label': 'nome',
-            'required': true
-        },
-        {
-            'type': 'text',
-            'label': 'sobrenome',
-            'required': false
-        },
-        {
-            'type': 'email',
-            'label': 'Email',
-            'required': true
-        }
-    ],
-    'vida': [
-        {
-            'type': 'text',
-            'label': 'nome',
-            'required': true
-        },
-        {
-            'type': 'text',
-            'label': 'sobrenome',
-            'required': false
-        },
-        {
-            'type': 'number',
-            'label': 'Duração',
-            'required': true
-        }
-    ],
-    'celular': [
-        {
-            'type': 'text',
-            'label': 'nome',
-            'required': true
-        },
-        {
-            'type': 'text',
-            'label': 'sobrenome',
-            'required': false
-        },
-        {
-            'type': 'text',
-            'label': 'Modelo do celular',
-            'required': true
-        }
-    ]
-
-}
+    'imovel': ['1', '2', '3'],
+    'vida': ['1', '2', '4'],
+    'celular': ['1', '2', '5']
+};
 
 class Form extends React.Component {
 
@@ -62,7 +47,12 @@ class Form extends React.Component {
 
         super();
 
-        this.state = { selectOptions: [], selectedOption: null };
+        this.state = {
+            selectOptions: [],
+            selectedOption: null,
+            selectedInputs: [],
+            inputsToShow: []
+        };
     }
 
     componentDidMount() {
@@ -72,13 +62,58 @@ class Form extends React.Component {
 
     }
 
+    getInputs(key) {
+        let ids = _SELECT_OPTIONS[key];
+        let selected = [];
+
+        _INPUTS.forEach((inp) => {
+
+            ids.forEach((id) => {
+                if (inp.id === id) {
+                    selected.push(inp);
+                }
+            })
+
+        })
+
+        return selected;
+    }
+
+    handleSelection = (e) => {
+        let selected = e.target.value;
+        let inputs = this.getInputs(selected);
+
+        this.setState({
+            selectedOption: selected,
+            selectedInputs: inputs
+        });
+    }
+
     render() {
 
         let selectOptions = this.state.selectOptions;
+        let selectionInputs = this.state.selectedInputs;
 
         return (
             <div>
-                <SelectComponent options={selectOptions} />
+                Selectione um tipo de seguro
+                <SelectComponent
+                    handleSelect={this.handleSelection}
+                    options={selectOptions} />
+
+                {
+                    selectionInputs.length > 0 ? (
+                        selectionInputs.map((inp, index) => (
+                            <InputComponent
+                                key={index}
+                                type={inp.type}
+                                name={inp.label}
+                                placeholder={inp.label}
+                                required={inp.required}
+                            />
+                        ))
+                    ) : null
+                }
             </div>
         )
     }

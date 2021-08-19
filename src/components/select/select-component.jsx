@@ -1,11 +1,11 @@
 import React from 'react';
 import Option from '../option/option-component';
 
-const SelectComponent = ({ options }) => {
+const SelectComponent = ({ options, handleSelect }) => {
     console.log(options);
 
     return (
-        <select>
+        <select onChange={handleSelect}>
             {
                 options.length > 0 ? (
                     options.map((name, index) => (
