@@ -1,5 +1,5 @@
 import React from 'react';
-import Option from '../option/option-component';
+import Option from '../option/option.component';
 
 const SelectComponent = ({ options, handleSelect }) => {
     console.log(options);

@@ -1,9 +1,10 @@
 import React from 'react';
+import { InputStyled } from './input.styles';
 
 const InputComponent = ({ type, name, placeholder, required }) => {
 
     return (
-        <input
+        <InputStyled
             type={type}
             name={name}
             placeholder={placeholder}

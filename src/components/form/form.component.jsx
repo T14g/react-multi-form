@@ -1,6 +1,8 @@
 import React from 'react';
-import SelectComponent from '../select/select-component';
-import InputComponent from '../input/input-component';
+import SelectComponent from '../select/select.component';
+import InputComponent from '../input/input.component';
+
+import { FormContainer, Container } from './form.styled';
 
 const _INPUTS = [
     {
@@ -95,11 +97,14 @@ class Form extends React.Component {
         let selectionInputs = this.state.selectedInputs;
 
         return (
-            <div>
-                Selectione um tipo de seguro
-                <SelectComponent
-                    handleSelect={this.handleSelection}
-                    options={selectOptions} />
+            <FormContainer>
+
+                <Container>
+                    Selectione um tipo de seguro
+                    <SelectComponent
+                        handleSelect={this.handleSelection}
+                        options={selectOptions} />
+                </Container>
 
                 {
                     selectionInputs.length > 0 ? (
@@ -114,7 +119,7 @@ class Form extends React.Component {
                         ))
                     ) : null
                 }
-            </div>
+            </FormContainer>
         )
     }
 }
