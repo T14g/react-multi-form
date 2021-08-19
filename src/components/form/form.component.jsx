@@ -34,13 +34,25 @@ const _INPUTS = [
         'type': 'text',
         'label': 'Modelo do celular',
         'required': true
+    },
+    {
+        'id': '6',
+        'type': 'text',
+        'label': 'Endereço',
+        'required': true
+    },
+    {
+        'id': '7',
+        'type': 'text',
+        'label': 'Info adicional',
+        'required': true
     }
 ];
 
 const _SELECT_OPTIONS = {
-    'imovel': ['1', '2', '3'],
-    'vida': ['1', '2', '4'],
-    'celular': ['1', '2', '5']
+    'imovel': ['1', '2', '3','4','5','7'],
+    'vida': ['1', '2', '4','5','7'],
+    'celular': ['1', '2', '5','7']
 };
 
 class Form extends React.Component {
