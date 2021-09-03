@@ -1,6 +1,7 @@
 import React from 'react';
 import SelectComponent from '../select/select.component';
 import InputComponent from '../input/input.component';
+import SelectToggler from '../select-toggler/select-toggler.component';
 
 import { FormContainer, Container } from './form.styled';
 
@@ -131,6 +132,10 @@ class Form extends React.Component {
                         ))
                     ) : null
                 }
+
+                <SelectToggler>
+                    <h2>Test</h2>
+                </SelectToggler>
             </FormContainer>
         )
     }
