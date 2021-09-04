@@ -3,57 +3,75 @@ import SelectComponent from '../select/select.component';
 import InputComponent from '../input/input.component';
 import SelectToggler from '../select-toggler/select-toggler.component';
 
-import { FormContainer, Container } from './form.styled';
+import { FormContainer, Container, Row, InnerContainer } from './form.styled';
 
 const _INPUTS = [
     {
+        'id': 'sel-1',
+        'type': 'text',
+        'placeholder': 'Qual seguradora?',
+        'required': true
+    },
+    {
         'id': '1',
         'type': 'text',
-        'label': 'Nome',
+        'placeholder': 'Nome',
+        'name': 'nome',
         'required': true
     },
     {
         'id': '2',
-        'type': 'text',
-        'label': 'Sobrenome',
-        'required': false
+        'type': 'tel',
+        'name': 'cel-whats',
+        'placeholder': 'Celular/Whatsapp',
+        'required': true
     },
     {
         'id': '3',
         'type': 'email',
-        'label': 'Email',
-        'required': true
+        'name': 'email',
+        'placeholder': 'Email',
+        'required': false
     },
     {
         'id': '4',
-        'type': 'number',
-        'label': 'Duração',
+        'type': 'text',
+        'name': 'cpf-cnpj',
+        'placeholder': 'CPF/CNPJ',
         'required': true
     },
     {
         'id': '5',
-        'type': 'text',
-        'label': 'Modelo do celular',
+        'type': 'date',
+        'name': 'aniversario',
+        'placeholder': 'Data de nascimento',
         'required': true
     },
     {
         'id': '6',
         'type': 'text',
-        'label': 'Endereço',
+        'name': 'cep',
+        'placeholder': 'CEP',
         'required': true
     },
     {
         'id': '7',
         'type': 'text',
-        'label': 'Info adicional',
+        'placeholder': 'Qual seguradora?',
         'required': true
     }
 ];
 
 const _SELECT_OPTIONS = {
-    'imovel': ['1', '2', '3','4','5','7'],
-    'vida': ['1', '2', '4','5','7'],
-    'celular': ['1', '2', '5','7']
+    'Imóvel': ['sel-1', '1', '2', '3', '4', '5', '7'],
+    'Residencial': ['sel-1', '1', '2', '4', '5', '7'],
+    'Empresarial': ['sel-1', '1', '2', '5', '7'],
+    'Condomínio': ['sel-1', '1', '2', '5', '7'],
+    'Plano de saúde': ['sel-1', '1', '2', '5', '7'],
+    'Plano dental': ['sel-1', '1', '2', '5', '7'],
+    'Vida em grupo': ['sel-1', '1', '2', '5', '7'],
+    'Vida individual': ['sel-1', '1', '2', '5', '7'],
+    'Outros': ['sel-1', '1', '2', '5', '7', 'sel-1']
 };
 
 class Form extends React.Component {
@@ -113,29 +131,41 @@ class Form extends React.Component {
             <FormContainer>
 
                 <Container>
-                    Selectione um tipo de seguro
-                    <SelectComponent
-                        handleSelect={this.handleSelection}
-                        options={selectOptions} />
+                    <Row>
+                        Tipo de seguro
+                        <SelectComponent
+                            handleSelect={this.handleSelection}
+                            options={selectOptions} />
+                    </Row>
                 </Container>
 
+                <InnerContainer>
                 {
                     selectionInputs.length > 0 ? (
-                        selectionInputs.map((inp, index) => (
-                            <InputComponent
-                                key={index}
-                                type={inp.type}
-                                name={inp.label}
-                                placeholder={inp.label}
-                                required={inp.required}
-                            />
-                        ))
+                        selectionInputs.map((inp, index) => {
+                            
+                            if (inp.id === 'sel-1') {
+                                return (
+                                    <SelectToggler>
+                                        <h2>Test</h2>
+                                    </SelectToggler>
+                                )
+                            } else {
+                                return (
+                                    <InputComponent
+                                        key={index}
+                                        type={inp.type}
+                                        name={inp.name}
+                                        placeholder={inp.placeholder}
+                                        required={inp.required}
+                                    />
+                                )
+                            }
+
+                        })
                     ) : null
                 }
-
-                <SelectToggler>
-                    <h2>Test</h2>
-                </SelectToggler>
+                </InnerContainer>
             </FormContainer>
         )
     }
