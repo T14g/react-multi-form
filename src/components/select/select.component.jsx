@@ -2,7 +2,6 @@ import React from 'react';
 import Option from '../option/option.component';
 
 const SelectComponent = ({ options, handleSelect }) => {
-    console.log(options);
 
     return (
         <select onChange={handleSelect}>
@@ -16,6 +15,7 @@ const SelectComponent = ({ options, handleSelect }) => {
             }
         </select>
     );
+    
 }
 
 export default SelectComponent;
