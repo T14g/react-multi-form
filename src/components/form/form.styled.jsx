@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
 export const FormContainer =  styled.div`
-    max-width: 800px;
+    max-width: 650px;
     margin: 0 auto;
-    border: 2px #000 solid;
-    padding: 10px 15px;
+    padding: 20px 15px;
+    padding-top: 25px;
+    background: #95232a;
+    border-radius: 25px;
+    color: #fff;
 
     &:after{
         display: table;
@@ -12,37 +15,49 @@ export const FormContainer =  styled.div`
         clear: both;
     }
 
-
+    select{
+        height: 30px;
+        padding-left: 5px;
+        border: 1px #000 solid;
+        border-radius: 10px;
+    }
 `
 export const Container = styled.div`
 
 `
 
 export const Row = styled.div`
+    display: flex;
+    margin-bottom: 10px;
+`
 
+export const Label = styled.label`
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 30px;
+    font-weight: 900;
 `
 
 export const InnerContainer = styled.div`
-    max-width: 636px;
     margin: 0 auto;
 
-    input, select{
+    input, select, label{
+        
+    }
+    input[type="text"], 
+    input[type="tel"],
+    input[type="email"], 
+    input[type="date"], 
+    select{
         max-width: 200px;
         width: 100%;
         display: block;
-        float:left;
-        padding: 0p;
+        padding: 0px;
         margin: 0;
         height: 40px;
-    }
-    input[type="text"], input[type="tel"], input[type="date"], select{
-        padding: 0;
+        padding-left: 5px;
         border: 1px #000 solid;
-
         margin: 5px;
-    }
-    select{
-        padding: 0;
-        height: 42px;
+        border-radius: 10px;
     }
 `

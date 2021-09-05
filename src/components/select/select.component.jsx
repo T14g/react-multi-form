@@ -8,14 +8,14 @@ const SelectComponent = ({ options, handleSelect }) => {
             <option disabled>Selecione</option>
             {
                 options.length > 0 ? (
-                    options.map((name, index) => (
-                        <Option key={index} name={name} />
+                    options.map((opt, index) => (
+                        <Option key={index} name={opt.title} value={opt.value} />
                     ))
                 ) : null
             }
         </select>
     );
-    
+
 }
 
 export default SelectComponent;

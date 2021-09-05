@@ -3,7 +3,7 @@ import SelectComponent from '../select/select.component';
 import InputComponent from '../input/input.component';
 import SelectToggler from '../select-toggler/select-toggler.component';
 
-import { FormContainer, Container, Row, InnerContainer } from './form.styled';
+import { FormContainer, Container, Row, InnerContainer, Label } from './form.styled';
 
 const _INPUTS = [
     {
@@ -63,15 +63,54 @@ const _INPUTS = [
 ];
 
 const _SELECT_OPTIONS = {
-    'Imóvel': ['sel-1', '1', '2', '3', '4', '5', '7'],
-    'Residencial': ['sel-1', '1', '2', '4', '5', '7'],
-    'Empresarial': ['sel-1', '1', '2', '5', '7'],
-    'Condomínio': ['sel-1', '1', '2', '5', '7'],
-    'Plano de saúde': ['sel-1', '1', '2', '5', '7'],
-    'Plano dental': ['sel-1', '1', '2', '5', '7'],
-    'Vida em grupo': ['sel-1', '1', '2', '5', '7'],
-    'Vida individual': ['sel-1', '1', '2', '5', '7'],
-    'Outros': ['sel-1', '1', '2', '5', '7', 'sel-1']
+    'imovel': {
+        'title': 'Imóvel',
+        'rows': [
+            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    },
+    'residencial': {
+        'title': 'Residencial',
+        'rows': [
+            ['2', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    },
+    'condominio': {
+        'title': 'Condomínio',
+        'rows': [
+            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    },
+    'plano-saude': {
+        'title': 'Plano de saúde',
+        'rows': [
+            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    },
+    'plano-dental': {
+        'title': 'Plano dental',
+        'rows': [
+            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    },
+    'vida-grupo': {
+        'title': 'Vida em grupo',
+        'rows': [
+            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    },
+    'vida-individual': {
+        'title': 'Vida individual',
+        'rows': [
+            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    },
+    'outros': {
+        'title': 'Outros',
+        'rows': [
+            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+        ]
+    }
 };
 
 class Form extends React.Component {
@@ -90,49 +129,82 @@ class Form extends React.Component {
 
     componentDidMount() {
 
-        let options = Object.keys(_SELECT_OPTIONS);
-        this.setState({ selectOptions: options });
+        let optionsKeys = Object.keys(_SELECT_OPTIONS);
+        let titles = [];
+
+        optionsKeys.map((value) => {
+            let title = _SELECT_OPTIONS[value].title;
+            titles.push({ value: value, title: title })
+        });
+
+        this.setState({ selectOptions: titles });
 
     }
 
-    getInputs(key) {
-        let ids = _SELECT_OPTIONS[key];
-        let selected = [];
-
-        _INPUTS.forEach((inp) => {
-
-            ids.forEach((id) => {
-                if (inp.id === id) {
-                    selected.push(inp);
-                }
-            })
-
-        })
-
-        return selected;
-    }
-
+    // Save selected option on state
     handleSelection = (e) => {
         let selected = e.target.value;
-        let inputs = this.getInputs(selected);
-
         this.setState({
-            selectedOption: selected,
-            selectedInputs: inputs
+            selectedOption: selected
         });
+    }
+
+    // Get input data by Id
+    getInput = (id) => {
+        let inputData = _INPUTS[id];
+        return inputData;
+    }
+
+    // Prepare the Row with inputs and returns it
+    prepareRow = (rowData) => {
+
+        return (
+            <Row>
+                {
+                    rowData.map((id, index) => {
+                        let data = this.getInput(id);
+
+                        return (<InputComponent
+                            key={index}
+                            type={data.type}
+                            name={data.name}
+                            placeholder={data.placeholder}
+                            required={data.required}
+                        />)
+                    })
+                }
+            </Row>
+        )
+    }
+
+    // Render Selected Option Input Rows
+    renderOptionRows = (option) => {
+
+        let optionData = _SELECT_OPTIONS[option];
+        let rows = optionData.rows;
+
+        return (
+            <React.Fragment>
+                {
+                    rows.map((row) =>
+                        this.prepareRow(row)
+                    )
+                }
+            </React.Fragment>
+        )
     }
 
     render() {
 
         let selectOptions = this.state.selectOptions;
-        let selectionInputs = this.state.selectedInputs;
+        let selected = this.state.selectedOption;
 
         return (
             <FormContainer>
 
                 <Container>
-                    <Row>
-                        Tipo de seguro
+                    <Row >
+                        <Label>Selecione o tipo de seguro</Label>
                         <SelectComponent
                             handleSelect={this.handleSelection}
                             options={selectOptions} />
@@ -140,32 +212,9 @@ class Form extends React.Component {
                 </Container>
 
                 <InnerContainer>
-                {
-                    selectionInputs.length > 0 ? (
-                        selectionInputs.map((inp, index) => {
-                            
-                            if (inp.id === 'sel-1') {
-                                return (
-                                    <SelectToggler>
-                                        <h2>Test</h2>
-                                    </SelectToggler>
-                                )
-                            } else {
-                                return (
-                                    <InputComponent
-                                        key={index}
-                                        type={inp.type}
-                                        name={inp.name}
-                                        placeholder={inp.placeholder}
-                                        required={inp.required}
-                                    />
-                                )
-                            }
-
-                        })
-                    ) : null
-                }
+                    {selected ? this.renderOptionRows(selected) : null}
                 </InnerContainer>
+
             </FormContainer>
         )
     }
