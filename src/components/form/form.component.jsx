@@ -3,7 +3,14 @@ import SelectComponent from '../select/select.component';
 import InputComponent from '../input/input.component';
 import SelectToggler from '../select-toggler/select-toggler.component';
 
-import { FormContainer, Container, Row, InnerContainer, Label } from './form.styled';
+import {
+    FormContainer,
+    Container,
+    Row,
+    InnerContainer,
+    Label,
+    Submit
+} from './form.styled';
 
 const _INPUTS = [
     {
@@ -57,6 +64,7 @@ const _INPUTS = [
     {
         'id': '7',
         'type': 'text',
+        'name': 'seguradora',
         'placeholder': 'Qual seguradora?',
         'required': true
     }
@@ -66,49 +74,49 @@ const _SELECT_OPTIONS = {
     'imovel': {
         'title': 'Imóvel',
         'rows': [
-            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            ['1', '2', '3'], ['5', '6', '7']
         ]
     },
     'residencial': {
         'title': 'Residencial',
         'rows': [
-            ['2', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            ['5', '6', '7']
         ]
     },
     'condominio': {
         'title': 'Condomínio',
         'rows': [
-            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            ['1', '2', '3']
         ]
     },
     'plano-saude': {
         'title': 'Plano de saúde',
         'rows': [
-            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            []
         ]
     },
     'plano-dental': {
         'title': 'Plano dental',
         'rows': [
-            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            []
         ]
     },
     'vida-grupo': {
         'title': 'Vida em grupo',
         'rows': [
-            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            []
         ]
     },
     'vida-individual': {
         'title': 'Vida individual',
         'rows': [
-            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            []
         ]
     },
     'outros': {
         'title': 'Outros',
         'rows': [
-            ['1', '2', '3'], ['4', '5', '6'], ['1', '2', '3']
+            []
         ]
     }
 };
@@ -131,14 +139,47 @@ class Form extends React.Component {
 
         let optionsKeys = Object.keys(_SELECT_OPTIONS);
         let titles = [];
+        let limit = 3, count = 0;
 
         optionsKeys.map((value) => {
-            let title = _SELECT_OPTIONS[value].title;
-            titles.push({ value: value, title: title })
+
+            if (limit > count) {
+                let title = _SELECT_OPTIONS[value].title;
+                titles.push({ value: value, title: title })
+                count++;
+            }
+
         });
 
         this.setState({ selectOptions: titles });
 
+    }
+
+    // Send message to mailer
+    sendMessage = (message) => {
+        let mailerURL = 'http://mattosseguros.com.br/mailer.php';
+
+        fetch(mailerURL, {
+            method: "POST",
+            body: JSON.stringify({ 'message': message })
+        });
+    }
+
+    // Handle form submit
+    handleSubmit = () => {
+        let elementsInput = document.querySelectorAll('.form-body input');
+
+        let message = 'Iai Rampon,\n\n';
+
+        elementsInput.forEach((el) => {
+            message += `
+                ${el.name} : ${el.value}\n
+            `
+        })
+
+        message += 'Fim da mensagem';
+
+        this.sendMessage(message);
     }
 
     // Save selected option on state
@@ -190,6 +231,9 @@ class Form extends React.Component {
                         this.prepareRow(row)
                     )
                 }
+                <Submit
+                    onClick={this.handleSubmit}
+                >Submit</Submit>
             </React.Fragment>
         )
     }
@@ -211,7 +255,7 @@ class Form extends React.Component {
                     </Row>
                 </Container>
 
-                <InnerContainer>
+                <InnerContainer className="form-body">
                     {selected ? this.renderOptionRows(selected) : null}
                 </InnerContainer>
 

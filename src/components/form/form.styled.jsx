@@ -61,3 +61,7 @@ export const InnerContainer = styled.div`
         border-radius: 10px;
     }
 `
+
+export const Submit = styled.button`
+
+`
