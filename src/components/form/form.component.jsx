@@ -2,125 +2,19 @@ import React from 'react';
 import SelectComponent from '../select/select.component';
 import InputComponent from '../input/input.component';
 import SelectToggler from '../select-toggler/select-toggler.component';
+import TextArea from '../textarea/textarea.component';
+
+import { _INPUTS, _SELECT_OPTIONS } from './data';
 
 import {
     FormContainer,
     Container,
     Row,
+    Column,
     InnerContainer,
     Label,
     Submit
 } from './form.styled';
-
-const _INPUTS = [
-    {
-        'id': 'sel-1',
-        'type': 'text',
-        'placeholder': 'Qual seguradora?',
-        'required': true
-    },
-    {
-        'id': '1',
-        'type': 'text',
-        'placeholder': 'Nome',
-        'name': 'nome',
-        'required': true
-    },
-    {
-        'id': '2',
-        'type': 'tel',
-        'name': 'cel-whats',
-        'placeholder': 'Celular/Whatsapp',
-        'required': true
-    },
-    {
-        'id': '3',
-        'type': 'email',
-        'name': 'email',
-        'placeholder': 'Email',
-        'required': false
-    },
-    {
-        'id': '4',
-        'type': 'text',
-        'name': 'cpf-cnpj',
-        'placeholder': 'CPF/CNPJ',
-        'required': true
-    },
-    {
-        'id': '5',
-        'type': 'date',
-        'name': 'aniversario',
-        'placeholder': 'Data de nascimento',
-        'required': true
-    },
-    {
-        'id': '6',
-        'type': 'text',
-        'name': 'cep',
-        'placeholder': 'CEP',
-        'required': true
-    },
-    {
-        'id': '7',
-        'type': 'text',
-        'name': 'seguradora',
-        'placeholder': 'Qual seguradora?',
-        'required': true
-    }
-];
-
-const _SELECT_OPTIONS = {
-    'imovel': {
-        'title': 'Imóvel',
-        'rows': [
-            ['1', '2', '3'], ['5', '6', '7']
-        ]
-    },
-    'residencial': {
-        'title': 'Residencial',
-        'rows': [
-            ['5', '6', '7']
-        ]
-    },
-    'condominio': {
-        'title': 'Condomínio',
-        'rows': [
-            ['1', '2', '3']
-        ]
-    },
-    'plano-saude': {
-        'title': 'Plano de saúde',
-        'rows': [
-            []
-        ]
-    },
-    'plano-dental': {
-        'title': 'Plano dental',
-        'rows': [
-            []
-        ]
-    },
-    'vida-grupo': {
-        'title': 'Vida em grupo',
-        'rows': [
-            []
-        ]
-    },
-    'vida-individual': {
-        'title': 'Vida individual',
-        'rows': [
-            []
-        ]
-    },
-    'outros': {
-        'title': 'Outros',
-        'rows': [
-            []
-        ]
-    }
-};
-
 class Form extends React.Component {
 
     constructor() {
@@ -129,7 +23,7 @@ class Form extends React.Component {
 
         this.state = {
             selectOptions: [],
-            selectedOption: null,
+            selectedOption: 'automovel',
             selectedInputs: [],
             inputsToShow: []
         };
@@ -139,15 +33,11 @@ class Form extends React.Component {
 
         let optionsKeys = Object.keys(_SELECT_OPTIONS);
         let titles = [];
-        let limit = 3, count = 0;
 
         optionsKeys.map((value) => {
 
-            if (limit > count) {
-                let title = _SELECT_OPTIONS[value].title;
-                titles.push({ value: value, title: title })
-                count++;
-            }
+            let title = _SELECT_OPTIONS[value].title;
+            titles.push({ value: value, title: title })
 
         });
 
@@ -190,9 +80,28 @@ class Form extends React.Component {
         });
     }
 
+    // Verify if is one of the select inputs
+    isSelect = (id) => {
+
+        switch (id) {
+            case 'renew':
+                return (
+                    <SelectToggler />
+                )
+        }
+
+    }
+
     // Get input data by Id
     getInput = (id) => {
-        let inputData = _INPUTS[id];
+        let inputData = {};
+
+        _INPUTS.forEach((inp) => {
+            if (inp.id === id && inp.id) {
+                inputData = inp;
+            }
+        })
+
         return inputData;
     }
 
@@ -203,15 +112,63 @@ class Form extends React.Component {
             <Row>
                 {
                     rowData.map((id, index) => {
-                        let data = this.getInput(id);
 
-                        return (<InputComponent
-                            key={index}
-                            type={data.type}
-                            name={data.name}
-                            placeholder={data.placeholder}
-                            required={data.required}
-                        />)
+                        if (id === 'renew') {
+
+                            return (
+                                <Column className="renew-col">
+                                    <Label>Renovação</Label>
+                                    <SelectToggler>
+                                        <InputComponent
+                                            key='seguradora'
+                                            type={'text'}
+                                            name={'renew-seguradora'}
+                                            placeholder={'Qual a seguradora?'}
+                                            required={true}
+                                        />
+                                    </SelectToggler>
+                                </Column>
+                            )
+
+                        } else if (id.includes('sel')) {
+
+                            let data = this.getInput(id);
+
+                            return (
+                                <Column>
+                                    <Label>{data.placeholder}</Label>
+                                    <SelectComponent options={data.options} />
+                                </Column>
+                            )
+
+                        } else if (id.includes('textarea')) {
+                            let data = this.getInput(id);
+
+                            return (
+                                <Column className="col-aniversarios">
+                                    <Label>{data.label}</Label>
+                                    <TextArea placeholder={data.placeholder} />
+                                </Column>
+                            )
+
+                        } else {
+
+                            let data = this.getInput(id);
+
+                            return (
+                                <Column>
+                                    <Label>{data.placeholder}</Label>
+                                    <InputComponent
+                                        key={index}
+                                        type={data.type}
+                                        name={data.name}
+                                        placeholder={data.placeholder}
+                                        required={data.required}
+                                    />
+                                </Column>
+                            )
+                        }
+
                     })
                 }
             </Row>
@@ -231,6 +188,12 @@ class Form extends React.Component {
                         this.prepareRow(row)
                     )
                 }
+                <Row>
+                    <Column className="col-obs">
+                        <Label>Observação</Label>
+                        <TextArea />
+                    </Column>
+                </Row>
                 <Submit
                     onClick={this.handleSubmit}
                 >Submit</Submit>

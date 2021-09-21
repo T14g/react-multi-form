@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Select, Option } from './select-toggler.styles';
 class SelectToggler extends React.Component {
 
     constructor() {
@@ -25,22 +25,22 @@ class SelectToggler extends React.Component {
         if (showingHidden) {
             return (
                 <React.Fragment>
-                    <select onChange={(e) => this.handleSelect(e)}>
-                        <option >Selecione</option>
-                        <option value="yes">Sim</option>
-                        <option value="no">Não</option>
-                    </select>
+                    <Select onChange={(e) => this.handleSelect(e)}>
+                        <Option >Selecione</Option>
+                        <Option value="yes">Sim</Option>
+                        <Option value="no">Não</Option>
+                    </Select>
                     {this.props.children}
                 </React.Fragment>
             )
         } else {
             return (
                 <React.Fragment>
-                    <select onChange={(e) => this.handleSelect(e)}>
-                        <option >Selecione</option>
-                        <option value="yes">Sim</option>
-                        <option value="no">Não</option>
-                    </select>
+                    <Select onChange={(e) => this.handleSelect(e)}>
+                        <Option >Selecione</Option>
+                        <Option value="yes">Sim</Option>
+                        <Option value="no">Não</Option>
+                    </Select>
                 </React.Fragment>
             )
         }

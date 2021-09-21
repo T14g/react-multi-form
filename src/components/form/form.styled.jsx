@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FormContainer =  styled.div`
-    max-width: 650px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px 15px;
     padding-top: 25px;
@@ -28,7 +28,28 @@ export const Container = styled.div`
 
 export const Row = styled.div`
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+`
+
+export const Column = styled.div`
+    width: 50%;
+
+    &.col-obs, &.col-aniversarios{
+        width: 100%;
+        padding: 5px;
+    }
+
+    &.renew-col{
+        width: 100%;
+
+        select,input[type="text"]{
+            width: initial;
+            display: inline;
+        }
+        input[type="text"]{
+            width: 200px;
+        }
+    }
 `
 
 export const Label = styled.label`
@@ -49,9 +70,9 @@ export const InnerContainer = styled.div`
     input[type="email"], 
     input[type="date"], 
     select{
-        max-width: 200px;
         width: 100%;
         display: block;
+        max-width: 385px;
         padding: 0px;
         margin: 0;
         height: 40px;
