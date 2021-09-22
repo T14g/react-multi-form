@@ -34,9 +34,26 @@ export const Row = styled.div`
 export const Column = styled.div`
     width: 50%;
 
-    &.col-obs, &.col-aniversarios{
+    &.col-obs{
         width: 100%;
         padding: 5px;
+    }
+
+    &.col-aniversarios{
+        width: 100%;
+        padding: 5px;
+
+        label, select{
+            display: inline;
+        }
+        
+        select{
+            max-width: 200px;
+        }
+
+        textarea{
+            margin-top: 5px;
+        }
     }
 
     &.renew-col{
@@ -49,6 +66,10 @@ export const Column = styled.div`
         input[type="text"]{
             width: 200px;
         }
+    }
+
+    textarea{
+        max-width: 780px;
     }
 `
 

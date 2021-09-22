@@ -3,6 +3,7 @@ import SelectComponent from '../select/select.component';
 import InputComponent from '../input/input.component';
 import SelectToggler from '../select-toggler/select-toggler.component';
 import TextArea from '../textarea/textarea.component';
+import Aniversarios from '../aniversarios/aniversarios.component';
 
 import { _INPUTS, _SELECT_OPTIONS } from './data';
 
@@ -141,6 +142,13 @@ class Form extends React.Component {
                                 </Column>
                             )
 
+                        } else if (id.includes('aniversarios')) {
+                            return (
+                                <Column className="col-aniversarios">
+                                    <Label>Quantos funcionários?</Label>
+                                    <Aniversarios />
+                                </Column>
+                            )
                         } else if (id.includes('textarea')) {
                             let data = this.getInput(id);
 
