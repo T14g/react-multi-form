@@ -24,7 +24,7 @@ class SelectToggler extends React.Component {
         if (showingHidden) {
             return (
                 <React.Fragment>
-                    <Select onChange={(e) => this.handleSelect(e)}>
+                    <Select onChange={(e) => this.handleSelect(e)} className="select-renew">
                         <Option >Selecione</Option>
                         <Option value="yes">Sim</Option>
                         <Option value="no">Não</Option>
@@ -35,7 +35,7 @@ class SelectToggler extends React.Component {
         } else {
             return (
                 <React.Fragment>
-                    <Select onChange={(e) => this.handleSelect(e)}>
+                    <Select required={true} onChange={(e) => this.handleSelect(e)} className="select-renew">
                         <Option >Selecione</Option>
                         <Option value="yes">Sim</Option>
                         <Option value="no">Não</Option>
