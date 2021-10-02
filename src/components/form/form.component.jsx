@@ -26,7 +26,8 @@ class Form extends React.Component {
             selectOptions: [],
             selectedOption: 'automovel',
             selectedInputs: [],
-            inputsToShow: []
+            inputsToShow: [],
+            renewable: true
         };
     }
 
@@ -35,12 +36,10 @@ class Form extends React.Component {
         let optionsKeys = Object.keys(_SELECT_OPTIONS);
         let titles = [];
 
-        optionsKeys.map((value) => {
-
-            let title = _SELECT_OPTIONS[value].title;
-            titles.push({ value: value, title: title })
-
-        });
+        optionsKeys.forEach(option => {
+            let title = _SELECT_OPTIONS[option].title;
+            titles.push({ value: option, title: title })
+        })
 
         this.setState({ selectOptions: titles });
 
@@ -81,18 +80,6 @@ class Form extends React.Component {
         });
     }
 
-    // Verify if is one of the select inputs
-    isSelect = (id) => {
-
-        switch (id) {
-            case 'renew':
-                return (
-                    <SelectToggler />
-                )
-        }
-
-    }
-
     // Get input data by Id
     getInput = (id) => {
         let inputData = {};
@@ -107,36 +94,19 @@ class Form extends React.Component {
     }
 
     // Prepare the Row with inputs and returns it
-    prepareRow = (rowData) => {
+    prepareRow = (rowData, index) => {
 
         return (
-            <Row>
+            <Row key={index}>
                 {
                     rowData.map((id, index) => {
 
-                        if (id === 'renew') {
-
-                            return (
-                                <Column className="renew-col">
-                                    <Label>Renovação</Label>
-                                    <SelectToggler>
-                                        <InputComponent
-                                            key='seguradora'
-                                            type={'text'}
-                                            name={'renew-seguradora'}
-                                            placeholder={'Qual a seguradora?'}
-                                            required={true}
-                                        />
-                                    </SelectToggler>
-                                </Column>
-                            )
-
-                        } else if (id.includes('sel')) {
+                        if (id.includes('sel')) {
 
                             let data = this.getInput(id);
 
                             return (
-                                <Column>
+                                <Column key={index}>
                                     <Label>{data.placeholder}</Label>
                                     <SelectComponent options={data.options} />
                                 </Column>
@@ -144,7 +114,7 @@ class Form extends React.Component {
 
                         } else if (id.includes('aniversarios')) {
                             return (
-                                <Column className="col-aniversarios">
+                                <Column key={index} className="col-aniversarios">
                                     <Label>Quantos funcionários?</Label>
                                     <Aniversarios />
                                 </Column>
@@ -153,7 +123,7 @@ class Form extends React.Component {
                             let data = this.getInput(id);
 
                             return (
-                                <Column className="col-aniversarios">
+                                <Column key={index} className="col-aniversarios">
                                     <Label>{data.label}</Label>
                                     <TextArea placeholder={data.placeholder} />
                                 </Column>
@@ -164,7 +134,7 @@ class Form extends React.Component {
                             let data = this.getInput(id);
 
                             return (
-                                <Column>
+                                <Column key={index}>
                                     <Label>{data.placeholder}</Label>
                                     <InputComponent
                                         key={index}
@@ -186,20 +156,21 @@ class Form extends React.Component {
     // Render Selected Option Input Rows
     renderOptionRows = (option) => {
 
+        let selected = this.state.selectedOption;
         let optionData = _SELECT_OPTIONS[option];
         let rows = optionData.rows;
 
         return (
             <React.Fragment>
                 {
-                    rows.map((row) =>
-                        this.prepareRow(row)
+                    rows.map((row, index) =>
+                        this.prepareRow(row, index)
                     )
                 }
                 <Row>
                     <Column className="col-obs">
                         <Label>Observação</Label>
-                        <TextArea />
+                        <TextArea required={selected === 'outros' ? true : false} />
                     </Column>
                 </Row>
                 <Submit
@@ -214,15 +185,36 @@ class Form extends React.Component {
         let selectOptions = this.state.selectOptions;
         let selected = this.state.selectedOption;
 
+        let renewable = this.state.renewable;
+
         return (
             <FormContainer>
 
                 <Container>
-                    <Row >
+                    <Row className="row-top">
                         <Label>Selecione o tipo de seguro</Label>
                         <SelectComponent
                             handleSelect={this.handleSelection}
                             options={selectOptions} />
+
+                        {
+                            renewable ? (
+                                <Column className="renew-col">
+                                    <Label>Renovação</Label>
+                                    <SelectToggler>
+                                        <InputComponent
+                                            key='seguradora'
+                                            type='text'
+                                            name='renew-seguradora'
+                                            placeholder='Qual a seguradora?'
+                                            required={true}
+                                        />
+                                    </SelectToggler>
+                                </Column>
+                            ) : null
+                        }
+
+
                     </Row>
                 </Container>
 

@@ -136,14 +136,20 @@ export const _INPUTS = [
         'name': 'ramo',
         'placeholder': 'Ramo',
         'required': true
-    }
+    },
+    {
+        'id': '13',
+        'type': 'text',
+        'name': 'valor-segurado',
+        'placeholder': 'Valor Segurado',
+        'required': true
+    },
 ];
 
 export const _SELECT_OPTIONS = {
     'automovel': {
         'title': 'Automóvel',
         'rows': [
-            ['renew'],
             ['1', '2'],
             ['3', '4'],
             ['5', '6'],
@@ -154,7 +160,6 @@ export const _SELECT_OPTIONS = {
     'residencial': {
         'title': 'Residencial',
         'rows': [
-            ['renew'],
             ['1', '2'],
             ['3', '4'],
             ['sel-tipo-casa', 'sel-util-2'],
@@ -164,7 +169,6 @@ export const _SELECT_OPTIONS = {
     'empresarial': {
         'title': 'Empresarial',
         'rows': [
-            ['renew'],
             ['1', '2'],
             ['3', '4'],
             ['6', '11'],
@@ -174,7 +178,6 @@ export const _SELECT_OPTIONS = {
     'condominio': {
         'title': 'Condomínio',
         'rows': [
-            ['renew'],
             ['1', '2'],
             ['3', '4'],
             ['sel-tipo-casa-2', '6'],
@@ -184,7 +187,6 @@ export const _SELECT_OPTIONS = {
     'plano-saude': {
         'title': 'Plano de saúde',
         'rows': [
-            ['renew'],
             ['1', '2'],
             ['3', '4'],
             ['6', '12'],
@@ -194,25 +196,35 @@ export const _SELECT_OPTIONS = {
     'plano-dental': {
         'title': 'Plano dental',
         'rows': [
-            []
+            ['1', '2'],
+            ['3', '4'],
+            ['6'],
+            ['aniversarios']
         ]
     },
     'vida-grupo': {
         'title': 'Vida em grupo',
         'rows': [
-            []
+            ['1', '2'],
+            ['3', '4'],
+            ['6', '12'],
+            ['13']
         ]
     },
     'vida-individual': {
         'title': 'Vida individual',
         'rows': [
-            []
+            ['1', '5'],
+            ['3', '4'],
+            ['6', '12'],
+            ['2','13']
         ]
     },
     'outros': {
         'title': 'Outros',
         'rows': [
-            []
+            ['1', '2'],
+            ['3']
         ]
     }
 };

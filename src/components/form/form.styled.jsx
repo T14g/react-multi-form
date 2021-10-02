@@ -29,6 +29,20 @@ export const Container = styled.div`
 export const Row = styled.div`
     display: flex;
     margin-bottom: 5px;
+
+    input[name="renew-seguradora"],
+    select
+    {
+        max-width: 385px;
+        padding: 0px;
+        margin: 0;
+        height: 40px;
+        padding-left: 5px;
+        border: 1px #000 solid;
+        margin: 5px;
+        border-radius: 10px;
+    }
+
 `
 
 export const Column = styled.div`
@@ -57,15 +71,7 @@ export const Column = styled.div`
     }
 
     &.renew-col{
-        width: 100%;
-
-        select,input[type="text"]{
-            width: initial;
-            display: inline;
-        }
-        input[type="text"]{
-            width: 200px;
-        }
+        margin-left: 5px
     }
 
     textarea{
@@ -83,9 +89,6 @@ export const Label = styled.label`
 export const InnerContainer = styled.div`
     margin: 0 auto;
 
-    input, select, label{
-        
-    }
     input[type="text"], 
     input[type="tel"],
     input[type="email"], 

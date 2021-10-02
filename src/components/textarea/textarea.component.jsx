@@ -1,10 +1,10 @@
 import React from 'react';
 import { TextareaStyled } from './textarea.styles';
 
-const TextArea = ({ placeholder = null }) => {
+const TextArea = ({ placeholder = null, required = false }) => {
 
     return (
-        <TextareaStyled placeholder={placeholder} />
+        <TextareaStyled placeholder={placeholder} required={required} />
     );
 }
 

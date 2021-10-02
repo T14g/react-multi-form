@@ -10,7 +10,6 @@ class SelectToggler extends React.Component {
 
     handleSelect = (e) => {
         const showing = e.target.value;
-        console.log(showing);
 
         if (showing === 'yes') {
             this.setState({ showingHidden: true })
