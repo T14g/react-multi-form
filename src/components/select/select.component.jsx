@@ -1,9 +1,22 @@
 import Option from '../option/option.component';
 
-const SelectComponent = ({ options, handleSelect, customClass, required = false }) => {
+const SelectComponent = ({
+    options,
+    handleSelect,
+    customClass,
+    required = false,
+    name,
+    placeholder
+}) => {
 
     return (
-        <select onChange={handleSelect} className={customClass} required={false}>
+        required = false,
+        <select
+            placeholder={placeholder}
+            onChange={handleSelect}
+            className={customClass}
+            required={false}
+            name={name}>
             <option disabled>Selecione</option>
             {
                 options.length > 0 ? (

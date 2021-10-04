@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const FormStyled =  styled.form`
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px 15px;
-    padding-top: 25px;
+    padding: 35px 15px;
     background: #95232a;
     border-radius: 25px;
     color: #fff;
@@ -33,9 +32,8 @@ export const Row = styled.div`
     input[name="renew-seguradora"],
     select
     {
-        max-width: 385px;
+        max-width: 170px;
         padding: 0px;
-        margin: 0;
         height: 40px;
         padding-left: 5px;
         border: 1px #000 solid;
@@ -76,7 +74,22 @@ export const Column = styled.div`
     }
 
     &.renew-col{
-        margin-left: 5px
+        margin-left: 5px;
+        position: relative;
+
+        .error-renew{
+            position: absolute;
+            top: -18px;
+            right: 200px;
+            font-size: 12px;
+        }
+
+        .error-seguradora{
+            position: absolute;
+            top: -18px;
+            right: 15px;
+            font-size: 12px;
+        }
     }
 
     textarea{

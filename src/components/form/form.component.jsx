@@ -47,9 +47,18 @@ class Form extends React.Component {
     // Save selected option on state
     handleSelection = (e) => {
         let selected = e.target.value;
-        this.setState({
-            selectedOption: selected
-        });
+
+        if(selected === 'outros'){
+            this.setState({
+                selectedOption: selected,
+                renewable: false
+            });
+        }else{
+            this.setState({
+                selectedOption: selected
+            });
+        }
+        
     }
 
     render() {

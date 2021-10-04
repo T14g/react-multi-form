@@ -6,6 +6,7 @@ export const _INPUTS = [
             {'title' : 'Profissional', 'value' : 'profissional'},
             {'title' : 'Aplicativo', 'value' : 'aplicativo'}
             ],
+        'name' : 'sel-util-automovel',
         'placeholder' : 'Utilização'
     },
     {
@@ -14,6 +15,7 @@ export const _INPUTS = [
             {'title' : 'Alvernaria' , 'value' : 'alvenaria'},
             {'title' : 'Madeira', 'value' : 'madeira'}
             ],
+        'name' : 'sel-tipo-casa',
         'placeholder' : 'Tipo de construção'
     },
     {
@@ -22,6 +24,7 @@ export const _INPUTS = [
             {'title' : 'Habitual' , 'value' : 'habitual'},
             {'title' : 'Veraneio', 'value' : 'veraneio'}
             ],
+        'name' : 'sel-util-casa',
         'placeholder' : 'Utilização'
     },
     {
@@ -30,6 +33,7 @@ export const _INPUTS = [
             {'title' : 'Vertical' , 'value' : 'vertical'},
             {'title' : 'Horizontal', 'value' : 'horizontal'}
             ],
+        'name' : 'sel-tipo-casa',
         'placeholder' : 'Tipo de construção'
     },
     {
@@ -46,12 +50,14 @@ export const _INPUTS = [
             {'title' : '10' , 'value' : '10'},
             {'title' : 'Mais de 10' , 'value' : 'more'},
             ],
+        'name' : 'sel-total-aniversarios',
         'placeholder' : 'Total de datas de nascimento segurados'
     },
     {
         'id' : 'textarea-aniversarios',
         'label' : 'Datas de nascimento',
         'placeholder' : '10/10/1994; 11/11/1993...etc',
+        'name' : 'text-aniversarios',
     },
     {
         'id': '1',

@@ -35,7 +35,10 @@ export const prepareRow = (rowData, index) => {
                         return (
                             <Column key={index}>
                                 <Label>{data.placeholder}</Label>
-                                <SelectComponent options={data.options} />
+                                <SelectComponent
+                                    options={data.options}
+                                    name={data.name}
+                                    placeholder={data.placeholder} />
                             </Column>
                         )
 
@@ -102,6 +105,7 @@ export const renderOptionRows = (option) => {
                     <TextArea
                         required={option === 'outros' ? true : false}
                         customClass='text-observacao'
+                        placeholder="Observação"
                     />
                 </Column>
             </Row>
