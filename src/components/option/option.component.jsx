@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Option = ({ name, value }) => {
 
     return (

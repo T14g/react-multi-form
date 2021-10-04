@@ -4,14 +4,16 @@ import InputComponent from '../input/input.component';
 import SelectToggler from '../select-toggler/select-toggler.component';
 import { renderOptionRows } from '../../helpers/view';
 import { _SELECT_OPTIONS } from './data';
+import { handleSubmit } from '../../helpers/message';
 
 import {
-    FormContainer,
+    FormStyled,
     Container,
     Row,
     Column,
     InnerContainer,
-    Label
+    Label,
+    Error
 } from './form.styled';
 class Form extends React.Component {
 
@@ -57,11 +59,11 @@ class Form extends React.Component {
         let renewable = this.state.renewable;
 
         return (
-            <FormContainer>
+            <FormStyled method="POST" onSubmit={handleSubmit}>
 
                 <Container>
                     <Row className="row-top">
-                        <Label>Selecione o tipo de seguro</Label>
+                        <Label className="label-tipo">Selecione o tipo de seguro</Label>
                         <SelectComponent
                             handleSelect={this.handleSelection}
                             options={selectOptions}
@@ -73,6 +75,9 @@ class Form extends React.Component {
                                 <Column className="renew-col">
                                     <Label>Renovação</Label>
                                     <SelectToggler>
+                                    <Error className='error-seguradora'>
+                                        Digite o nome da seguradora!
+                                    </Error>
                                         <InputComponent
                                             key='seguradora'
                                             type='text'
@@ -82,10 +87,12 @@ class Form extends React.Component {
                                             required={true}
                                         />
                                     </SelectToggler>
+                                    <Error className='error-renew'>
+                                        Selecione se quer renovar!
+                                    </Error>
                                 </Column>
                             ) : null
                         }
-
 
                     </Row>
                 </Container>
@@ -94,7 +101,7 @@ class Form extends React.Component {
                     {selected ? renderOptionRows(selected) : null}
                 </InnerContainer>
 
-            </FormContainer>
+            </FormStyled>
         )
     }
 }

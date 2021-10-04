@@ -1,4 +1,3 @@
-import React from 'react';
 import { TextareaStyled } from './textarea.styles';
 
 const TextArea = ({ placeholder = null, required = false, customClass }) => {

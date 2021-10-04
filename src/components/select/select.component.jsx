@@ -1,4 +1,3 @@
-import React from 'react';
 import Option from '../option/option.component';
 
 const SelectComponent = ({ options, handleSelect, customClass, required = false }) => {

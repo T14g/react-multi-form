@@ -1,11 +1,11 @@
 import React from "react";
 import { _INPUTS, _SELECT_OPTIONS } from "../components/form/data";
-import { Row, Column, Label, Submit } from "../components/form/form.styled";
+import { Row, Column, Label, Submit, Error } from "../components/form/form.styled";
 import SelectComponent from "../components/select/select.component";
 import Aniversarios from "../components/aniversarios/aniversarios.component";
 import TextArea from "../components/textarea/textarea.component";
 import InputComponent from "../components/input/input.component";
-import { handleSubmit } from "../components/form/helpers";
+import { handleSubmit } from "../helpers/message";
 
 // Get input data by Id
 export const getInput = (id) => {
@@ -63,6 +63,9 @@ export const prepareRow = (rowData, index) => {
                         return (
                             <Column key={index}>
                                 <Label>{data.placeholder}</Label>
+                                <Error className={`error-${data.name}`}>
+                                    Preencha corretamente!
+                                </Error>
                                 <InputComponent
                                     key={index}
                                     type={data.type}
@@ -104,7 +107,7 @@ export const renderOptionRows = (option) => {
             </Row>
             <Submit
                 onClick={handleSubmit}
-            >Submit</Submit>
+            >Enviar</Submit>
         </React.Fragment>
     )
 }

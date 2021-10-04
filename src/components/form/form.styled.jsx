@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FormContainer =  styled.div`
+export const FormStyled =  styled.form`
     max-width: 800px;
     margin: 0 auto;
     padding: 20px 15px;
@@ -8,6 +8,8 @@ export const FormContainer =  styled.div`
     background: #95232a;
     border-radius: 25px;
     color: #fff;
+    font-family: "Montserrat",sans-serif;
+    font-weight: 400;
 
     &:after{
         display: table;
@@ -22,9 +24,7 @@ export const FormContainer =  styled.div`
         border-radius: 10px;
     }
 `
-export const Container = styled.div`
-
-`
+export const Container = styled.div``
 
 export const Row = styled.div`
     display: flex;
@@ -43,6 +43,11 @@ export const Row = styled.div`
         border-radius: 10px;
     }
 
+    &.row-top{
+        .label-tipo{
+            line-height: 45px;
+        }
+    }
 `
 
 export const Column = styled.div`
@@ -86,6 +91,13 @@ export const Label = styled.label`
     font-weight: 900;
 `
 
+export const Error = styled.div`
+    padding-left: 5px;
+    font-size: 14px;
+    color: orange;
+    display: none;
+`
+
 export const InnerContainer = styled.div`
     margin: 0 auto;
 
@@ -108,5 +120,17 @@ export const InnerContainer = styled.div`
 `
 
 export const Submit = styled.button`
+    width: 100%;
+    display: block;
+    max-width: 385px;
+    padding: 7px 15px;
+    margin: 0 auto;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 20px;
 
+    &:hover{
+        opacity: 0.8;
+        cursor: pointer;
+    }
 `

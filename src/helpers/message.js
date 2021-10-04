@@ -1,5 +1,9 @@
-export const handleSubmit = () => {
+import { validator } from "./validator";
+
+export const handleSubmit = (e) => {
+    e.preventDefault();
     const message = createMessage();
+    validator();
     console.log(message);
 }
 
