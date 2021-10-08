@@ -102,6 +102,9 @@ export const renderOptionRows = (option) => {
             <Row>
                 <Column className="col-obs">
                     <Label>Observação</Label>
+                    <Error className="error-text-observacao">
+                        Preencha corretamente!
+                    </Error>
                     <TextArea
                         required={option === 'outros' ? true : false}
                         customClass='text-observacao'

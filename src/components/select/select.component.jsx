@@ -4,18 +4,16 @@ const SelectComponent = ({
     options,
     handleSelect,
     customClass,
-    required = false,
     name,
     placeholder
 }) => {
 
     return (
-        required = false,
+
         <select
             placeholder={placeholder}
             onChange={handleSelect}
             className={customClass}
-            required={false}
             name={name}>
             <option disabled>Selecione</option>
             {

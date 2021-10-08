@@ -55,7 +55,8 @@ class Form extends React.Component {
             });
         }else{
             this.setState({
-                selectedOption: selected
+                selectedOption: selected,
+                renewable: true
             });
         }
         

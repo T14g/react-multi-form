@@ -52,7 +52,7 @@ const createMessage = () => {
 
     message += 'Fim da mensagem';
 
-    return message;
+    sendMessage(message);
 
 }
 

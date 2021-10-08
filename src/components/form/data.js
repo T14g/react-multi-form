@@ -58,6 +58,7 @@ export const _INPUTS = [
         'label' : 'Datas de nascimento',
         'placeholder' : '10/10/1994; 11/11/1993...etc',
         'name' : 'text-aniversarios',
+        'class' : 'text-aniversarios'
     },
     {
         'id': '1',

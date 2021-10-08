@@ -2,6 +2,7 @@ import React from 'react';
 import SelectComponent from '../select/select.component';
 import TextArea from '../textarea/textarea.component';
 import { Message } from './aniversarios.styles';
+import { Error } from '../form/form.styled';
 
 class Aniversarios extends React.Component {
 
@@ -49,12 +50,16 @@ class Aniversarios extends React.Component {
 
                 {
                     showTextarea ? (
+                        <>
+                        <Error className="error-text-aniversarios">Preencha corretamente!</Error>
                         <TextArea
+                            customClass="text-aniversarios"
                             placeholder={"Digite aqui as datas de aniversário : Ex: 10/10/1994 ; 01/01/1994; 10/01/1993"}
                         />
+                        </>
                     ) : (
                         <Message>
-                            Mais de 10 funcionários, entre em contato!
+                            Mais de 10 funcionários, entre em contato preenchendo o campo observação abaixo!
                         </Message>
                     )
                 }
