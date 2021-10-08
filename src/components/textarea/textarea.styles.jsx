@@ -6,4 +6,12 @@ export const TextareaStyled = styled.textarea`
     border-radius: 10px;
     resize: none;
     padding: 5px;
+
+    @media(max-width: 850px){
+        max-width: 430px;
+    }
+
+    @media(max-width: 489px){
+        max-width: 265px;
+    }
 `
