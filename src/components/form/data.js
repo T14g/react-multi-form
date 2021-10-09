@@ -51,12 +51,12 @@ export const _INPUTS = [
             {'title' : 'Mais de 10' , 'value' : 'more'},
             ],
         'name' : 'sel-total-aniversarios',
-        'placeholder' : 'Total de datas de nascimento segurados'
+        'placeholder' : 'Total de datas'
     },
     {
         'id' : 'textarea-aniversarios',
         'label' : 'Datas de nascimento',
-        'placeholder' : '10/10/1994; 11/11/1993...etc',
+        'placeholder' : 'Datas de nascimento',
         'name' : 'text-aniversarios',
         'class' : 'text-aniversarios'
     },

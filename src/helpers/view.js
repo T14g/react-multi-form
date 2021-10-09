@@ -5,6 +5,8 @@ import SelectComponent from "../components/select/select.component";
 import Aniversarios from "../components/aniversarios/aniversarios.component";
 import TextArea from "../components/textarea/textarea.component";
 import InputComponent from "../components/input/input.component";
+import Celular from "../components/celular/celular.component";
+import Cep from "../components/cep/cep.component";
 import { handleSubmit } from "../helpers/message";
 
 // Get input data by Id
@@ -42,7 +44,28 @@ export const prepareRow = (rowData, index) => {
                             </Column>
                         )
 
-                    } else if (id.includes('aniversarios')) {
+                    } else if (id === '2') {
+                        return (
+                            <Column key={index} >
+                                <Label>Clular/Whatsapp</Label>
+                                <Error className="error-cel-whats">
+                                    Preencha corretamente!
+                                </Error>
+                                <Celular />
+                            </Column>
+                        )
+                    } else if (id === '6') {
+                        return (
+                            <Column key={index} >
+                                <Label>CEP</Label>
+                                <Error className="error-cep">
+                                    Preencha corretamente!
+                                </Error>
+                                <Cep />
+                            </Column>
+                        )
+                    }
+                    else if (id.includes('aniversarios')) {
                         return (
                             <Column key={index} className="col-aniversarios">
                                 <Label>Quantos funcionários?</Label>

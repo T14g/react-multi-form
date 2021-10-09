@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FormStyled =  styled.form`
+export const FormStyled =  styled.div`
     max-width: 800px;
     margin: 0 auto;
     padding: 35px 15px;
@@ -170,7 +170,7 @@ export const InnerContainer = styled.div`
     select{
         width: 100%;
         display: block;
-        max-width: 385px;
+        max-width: 375px;
         padding: 0px;
         margin: 0;
         height: 40px;
@@ -193,7 +193,7 @@ export const InnerContainer = styled.div`
 export const Submit = styled.button`
     width: 100%;
     display: block;
-    max-width: 385px;
+    max-width: 375px;
     padding: 7px 15px;
     margin: 0 auto;
     border-radius: 10px;

@@ -4,7 +4,6 @@ import InputComponent from '../input/input.component';
 import SelectToggler from '../select-toggler/select-toggler.component';
 import { renderOptionRows } from '../../helpers/view';
 import { _SELECT_OPTIONS } from './data';
-import { handleSubmit } from '../../helpers/message';
 
 import {
     FormStyled,
@@ -69,7 +68,7 @@ class Form extends React.Component {
         let renewable = this.state.renewable;
 
         return (
-            <FormStyled method="POST" onSubmit={handleSubmit}>
+            <FormStyled>
 
                 <Container>
                     <Row className="row-top">

@@ -46,6 +46,7 @@ class Aniversarios extends React.Component {
                 <SelectComponent
                     options={options}
                     handleSelect={this.handleChange}
+                    placeholder="Total de datas:"
                 />
 
                 {
@@ -54,7 +55,7 @@ class Aniversarios extends React.Component {
                         <Error className="error-text-aniversarios">Preencha corretamente!</Error>
                         <TextArea
                             customClass="text-aniversarios"
-                            placeholder={"Digite aqui as datas de aniversário : Ex: 10/10/1994 ; 01/01/1994; 10/01/1993"}
+                            placeholder="Datas de nascimento"
                         />
                         </>
                     ) : (

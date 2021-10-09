@@ -8,6 +8,7 @@ export const handleSubmit = (e) => {
     if (valid) {
         alert("Enviando...");
         console.log(message);
+        sendMessage(message);
     } else {
         alert("Falha em validar!");
     }
@@ -38,13 +39,13 @@ const createMessage = () => {
         message += `${el.placeholder} : ${el.value}\n`
     })
 
-    if(elementsSelect.length > 0){
+    if (elementsSelect.length > 0) {
         elementsSelect.forEach((el) => {
             message += `${el.getAttribute('placeholder')} : ${el.value}\n`
         })
     }
 
-    if(elementsTextarea.length > 0){
+    if (elementsTextarea.length > 0) {
         elementsTextarea.forEach((el) => {
             message += `${el.getAttribute('placeholder')} : ${el.value}\n`
         })
@@ -52,13 +53,12 @@ const createMessage = () => {
 
     message += 'Fim da mensagem';
 
-    sendMessage(message);
-
+    return message;
 }
 
 // Send Message via POST Request to mailer
 const sendMessage = (message) => {
-    const mailerURL = 'http://mattosseguros.com.br/mailer.php';
+    const mailerURL = 'https://mattosseguros.com.br/mailer.php';
 
     try {
         fetch(mailerURL, {
@@ -67,7 +67,13 @@ const sendMessage = (message) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 'message': message })
-        });
+        }).then(response => {
+            if (response.status === 200) {
+                alert("Enviado!");
+            } else {
+                alert("Falha ao enviar!");
+            }
+        })
     } catch (e) {
         console.log(e);
     }
